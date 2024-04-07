@@ -84,6 +84,15 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- Set default Windows Terminal (to comment on WSL)
+vim.opt.shell = vim.fn.executable 'pwsh' and 'pwsh' or 'powershell'
+vim.opt.shellcmdflag =
+  '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+vim.opt.shellquote = ''
+vim.opt.shellxquote = ''
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
