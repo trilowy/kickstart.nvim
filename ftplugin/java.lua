@@ -41,7 +41,7 @@ local config = {
     java = {
       format = {
         -- settings = { url = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml', profile = 'GoogleStyle' },
-        settings = { url = vim.fn.expand '~/eclipse-java-google-style.xml', profile = 'GoogleStyle' },
+        settings = { url = vim.fn.expand '~/eclipse-formatter.xml', profile = 'eclipse-formatter' },
       },
       completion = {
         favoriteStaticMembers = {
