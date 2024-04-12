@@ -43,6 +43,27 @@ local config = {
         -- settings = { url = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml', profile = 'GoogleStyle' },
         settings = { url = vim.fn.expand '~/eclipse-java-google-style.xml', profile = 'GoogleStyle' },
       },
+      completion = {
+        favoriteStaticMembers = {
+          'com.github.tomakehurst.wiremock.client.WireMock.*',
+          'org.assertj.core.api.Assertions.*',
+          'org.mockito.ArgumentMatchers.*',
+          'org.mockito.Mockito.*',
+          'org.mockito.MockitoAnnotations.*',
+          'org.mockito.ArgumentMatchers.*',
+          'org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*',
+          'org.springframework.test.web.servlet.result.MockMvcResultHandlers.*',
+          'org.hamcrest.Matchers.*',
+          'org.hamcrest.CoreMatchers.*',
+        },
+        filteredTypes = {
+          'com.sun.*',
+          'io.micrometer.shaded.*',
+          'java.awt.*',
+          'jdk.*',
+          'sun.*',
+        },
+      },
     },
   },
 
