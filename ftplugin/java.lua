@@ -2,6 +2,12 @@
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.stdpath 'data' .. '/jdtls-workspace/' .. project_name
 
+local bundles = {
+  vim.fn.glob(vim.fn.stdpath 'data' .. '/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin-*.jar', true),
+}
+
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.fn.stdpath 'data' .. '/mason/packages/java-test/extension/server/*.jar', true), '\n'))
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
@@ -75,9 +81,7 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {
-      vim.fn.glob(vim.fn.stdpath 'data' .. '/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin-*.jar', true),
-    },
+    bundles = bundles,
   },
 }
 -- This starts a new client & server,
@@ -93,3 +97,5 @@ vim.keymap.set('v', '<leader>crm', "<Esc><Cmd>lua require('jdtls').extract_metho
 
 -- Debug
 vim.keymap.set('n', '<leader>dbg', "<Cmd>lua require('jdtls.dap').setup_dap_main_class_configs()<CR>", { desc = 'Scan classes to debug' })
+vim.keymap.set('n', '<leader>dtc', require('jdtls').test_class, { desc = 'Test class (DAP)' })
+vim.keymap.set('n', '<leader>dtm', require('jdtls').test_nearest_method, { desc = 'Test method (DAP)' })
